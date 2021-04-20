@@ -71,6 +71,7 @@ function setNewDate(){
     let currentTime = new Date().getTime()
     if(((endDate - currentTime) <= 0) || flag === false){
         endDate = new Date("Jan 1, 2022").getTime()
+        alert("Please enter a future date")
         dateOutput.innerHTML = "Please enter a future date"
     } else{
         dateOutput.innerHTML = `${monthSel.value} ${daySel.value}, ${yearSel.value}`
