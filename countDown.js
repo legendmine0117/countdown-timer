@@ -2,6 +2,7 @@ let endDate;
 let flag = false; //flag to determine if day is selected by user, if day is not selected, submit button won't work
 window.onload = function(){
     endDate = new Date("Jan 1, 2022").getTime()
+    dateOutput.innerHTML = "default to Jan 1, 2022"
 }
 
 
@@ -72,7 +73,7 @@ function setNewDate(){
     if(((endDate - currentTime) <= 0) || flag === false){
         endDate = new Date("Jan 1, 2022").getTime()
         alert("Please enter a future date")
-        dateOutput.innerHTML = "Please enter a future date"
+        dateOutput.innerHTML = "default to Jan 1, 2022"
     } else{
         dateOutput.innerHTML = `${monthSel.value} ${daySel.value}, ${yearSel.value}`
     }
