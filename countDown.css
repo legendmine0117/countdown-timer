@@ -10,7 +10,6 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,16 +35,15 @@ li {
 .numbers {
   font-size: 30px;
   color: rgb(15, 71, 85);
+  padding: 0%;
 }
 
 .input-container {
-  margin-top: 5rem;
   font-size: 20px;
   color: rgb(15, 71, 85);
 }
 
 .sel {
-  margin-top: 5rem;
   font-size: 20px;
   font-weight: bold;
 }
@@ -55,8 +53,5 @@ label {
 }
 
 .dropdown {
-  position: relative;
   font-family: Arial;
-  align-items: center;
-  padding: 1rem;
 }
