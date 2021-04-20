@@ -1,5 +1,5 @@
 let endDate;
-
+let flag = false; //flag to determine if day is selected by user, if day is not selected, submit button won't work
 window.onload = function(){
     endDate = new Date("Jan 1, 2022").getTime()
 }
@@ -19,9 +19,9 @@ const MONTHLIST = ["January", "February", "March", "April", "May", "June",
 "July", "August", "September", "October", "November", "December"]
 const MONTH_WITH_THIRD_DAYS = ["April", "June", "September", "November"]
 yearSel.onchange = function(){
-
     monthSel.length = 1  //reset months
     daySel.length = 1  //reset days
+    flag = false //reset flag to false
     for(let i=0;i<MONTHLIST.length;i++){
         let month = MONTHLIST[i]
         let el = document.createElement("option")
@@ -29,6 +29,7 @@ yearSel.onchange = function(){
         el.value= month
         monthSel.add(el)
     }
+
 }
 
 
@@ -36,6 +37,7 @@ yearSel.onchange = function(){
 // populate day selection, account for leap year
 monthSel.onchange = function(){
     daySel.length = 1 //reset days
+    flag = false //reset flag to false
     let dayLength = 31
     if(MONTH_WITH_THIRD_DAYS.includes(monthSel.value)){
         dayLength = 30
@@ -60,16 +62,19 @@ function leapYear(year)
   return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 }
 
+daySel.onchange = function(){
+    flag = true //set flag to true after day is selected
+}
 //reset count down date to user input
 function setNewDate(){
-    console.log(monthSel.value)
     endDate = new Date(`${monthSel.value} ${daySel.value}, ${yearSel.value}`).getTime()
     let currentTime = new Date().getTime()
-    if((endDate - currentTime) <= 0){
+    if(((endDate - currentTime) <= 0) || flag === false){
         endDate = new Date("Jan 1, 2022").getTime()
-        invalidDate.innerHTML = "Please enter a future date"
+        dateOutput.innerHTML = "Please enter a future date"
+    } else{
+        dateOutput.innerHTML = `${monthSel.value} ${daySel.value}, ${yearSel.value}`
     }
-    dateOutput.innerHTML = `${monthSel.value} ${daySel.value}, ${yearSel.value}`
 }
 
 //display count down
